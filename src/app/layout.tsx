@@ -1,16 +1,7 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import style from "./layout.module.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "한입시네마 앱라우터 버전",
@@ -23,10 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        Global Layout
-        {children}
+    <html lang="ko">
+      <body>
+        <div className={style.container}>
+          <header>
+            <Link href={`${process.env.NEXT_PUBLIC_DEV_LINK}`}>
+              ONEBITE CINEMA - app router version
+            </Link>
+          </header>
+          <main>{children}</main>
+        </div>
       </body>
     </html>
   );
