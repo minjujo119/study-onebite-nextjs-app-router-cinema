@@ -5,7 +5,7 @@ import MovieItem from "@/components/movie-item";
 async function AllMovies() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie`,
-    { next: { revalidate: 3600 } },
+    { cache: "force-cache" },
   );
   if (!response.ok) {
     return <div>오류가 발생했습니다.</div>;
@@ -24,7 +24,7 @@ async function AllMovies() {
 async function RecoMovies() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie/random`,
-    { next: { revalidate: 3600 } },
+    { next: { revalidate: 3 } },
   );
   if (!response.ok) {
     return <div>오류가 발생했습니다.</div>;
