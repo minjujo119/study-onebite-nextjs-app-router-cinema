@@ -9,12 +9,12 @@ export async function generateStaticParams() {
   if (!response.ok) {
     console.log("데이터 fetch 실패");
   }
-  const data = await response.json();
-  const IdArray = data.map((d: MovieData) => ({
-    id: String(d.id),
+  const movieData = await response.json();
+  const IdArray: { id: string }[] = movieData.map((movie: MovieData) => ({
+    id: String(movie.id),
   }));
 
-  return IdArray;
+  return IdArray; //[{ id: "1" }, { id: "2" }, { id: "3" }, ....]
 }
 
 export default async function Page({
